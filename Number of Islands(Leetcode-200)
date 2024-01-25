@@ -1,5 +1,5 @@
 ##C++ code
-```C++
+[ https://leetcode.com/problems/number-of-islands/ ]
 class Solution {
 public:
     void bfs(int row, int col, vector<vector<int>>& vis, vector<vector<char>>& grid) {
