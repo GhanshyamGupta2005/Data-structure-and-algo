@@ -1,0 +1,66 @@
+## C++
+class Solution {
+public:
+    bool isValid(int i, int j, int m, int n, vector<vector<int>>& grid) {
+        return i >= 0 && i < m && j >= 0 && j < n && grid[i][j] == 1;
+    }
+
+    int orangesRotting(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        int fresh = 0, time = 0;
+        queue<pair<int, int>> q;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 2) {
+                    q.push({i, j});
+                } else if (grid[i][j] == 1) {
+                    fresh++;
+                }
+            }
+        }
+
+        if (fresh == 0) return 0;  // No fresh oranges to start with
+
+        while (!q.empty()) {
+            int size = q.size();
+            int temp = 0;
+
+            while (size != 0) {
+                int x1 = q.front().first;
+                int y1 = q.front().second;
+                q.pop();
+
+                int ax[4] = {1, -1, 0, 0};
+                int ay[4] = {0, 0, 1, -1};
+
+                for (int i = 0; i < 4; i++) {
+                    int x = ax[i] + x1;
+                    int y = ay[i] + y1;
+                    if (isValid(x, y, m, n, grid)) {
+                        temp++;
+                        grid[x][y] = 2;
+                        q.push({x, y});
+                    }
+                }
+                size--;
+            }
+
+            if (temp != 0) {
+                time++;
+            }
+        }
+
+        // Check if there are still fresh oranges left
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    return -1;  // There are fresh oranges left, so can't rot all oranges
+                }
+            }
+        }
+
+        return time;
+    }
+};
