@@ -2,6 +2,7 @@
 
 
 class Solution {
+
 public:
     bool checkBfs(vector<vector<int>>& graph, vector<int>&col, int i)
     {
