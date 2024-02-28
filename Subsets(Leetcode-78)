@@ -1,0 +1,47 @@
+class Solution {
+public:
+
+   //using recursion
+//    void solve(vector<int>s,int idx,vector<int>current,vector<vector<int>>&ans)
+//    {
+//        if(idx==s.size())
+//        {
+//            ans.push_back(current);
+//            return;
+//        }
+
+//        current.push_back(s[idx]);
+//        solve(s,idx+1,current,ans);
+//        current.pop_back();
+//        solve(s,idx+1,current,ans);
+
+//    }
+//     vector<vector<int>> subsets(vector<int>& nums) {
+//         vector<int>current;
+//         vector<vector<int>>ans;
+//         solve(nums,0,current,ans);
+//         return ans;
+//     }
+
+
+    //using bit manipualtion
+
+
+    vector<vector<int>> subsets(vector<int>& nums){
+           int n=nums.size();
+        vector<vector<int>>v;
+        for(int i=0;i<(1<<n);i++)
+
+        {
+            vector<int>v1;
+
+            for(int j=0;j<n;j++)
+            {
+                if(i&(1<<j))
+                v1.push_back(nums[j]);
+            }
+            v.push_back(v1);
+        }
+        return v;
+    }
+};
