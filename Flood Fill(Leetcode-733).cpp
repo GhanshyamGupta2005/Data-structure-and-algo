@@ -1,5 +1,6 @@
 class Solution {
 public:
+
     void bfs(int row, int col, vector<vector<int>>& vis, vector<vector<int>>& image, int color, int starting, vector<vector<int>>& v) {
         // vis[row][col] = 1;
          v[row][col] = color;
