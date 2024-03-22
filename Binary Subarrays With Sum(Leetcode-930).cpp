@@ -6,6 +6,7 @@ public:
         std::unordered_map<int, int> prefixSumCount;
 
         for (int num : nums) {
+            
             prefixSumCount[sum]++;
             sum += num;
             count += prefixSumCount[sum - goal];
